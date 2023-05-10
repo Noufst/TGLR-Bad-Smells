@@ -1,0 +1,129 @@
+
+grl Healthcare {
+	
+	actor Patient {
+		
+		name = "Paitent";
+		
+		// ------- Goals -------
+	
+		goal KeepWell{
+			
+			name = "Keep well";
+			importance = 50;
+			decompositionType = or;
+		}
+		
+		// ------- SoftGoals -------
+		
+		softGoal ReduceExpense {
+			
+			name = "Reduce Expense";
+			importance = 50;
+		}
+	
+		softGoal IncreaseHappiness {
+			
+			name = "Increase Happiness";
+			importance = 50;
+		}
+	
+		softGoal TimeSaving{
+			name = "Time Saving";
+		}
+	
+		softGoal QualityofCare {
+			name = "Quality of care";
+		}
+		
+		// ------- Tasks -------
+	
+		task PatientCenteredCare {
+			name = "Patient-centered care";
+		}
+
+		task ProviderCenteredCare {
+			name = "Provider-centered care";
+		}
+		
+		// ------ Decompositions -------
+		
+		KeepWell decomposedBy PatientCenteredCare, ProviderCenteredCare;
+		
+		// ------ Contributions -------
+		
+		TimeSaving contributesTo ReduceExpense {25;};
+		TimeSaving contributesTo IncreaseHappiness {100;};
+		QualityofCare contributesTo ReduceExpense {-25;};
+		QualityofCare contributesTo IncreaseHappiness {100;};
+		PatientCenteredCare contributesTo TimeSaving {25;};
+		PatientCenteredCare contributesTo QualityofCare {100;};
+		ProviderCenteredCare contributesTo TimeSaving {-25;};
+		ProviderCenteredCare contributesTo QualityofCare {100;};
+		
+		// ------ Dependencies ------- 
+		
+		QualityofCare dependsOn HealthProvider.ViableHealthcareService;
+	}
+
+	actor ProvidingHealth{
+		
+		name = "Providing Health";
+		
+		// ------- Goals -------
+		
+		goal TreatPatients{
+			name = "Treat Patients";
+			importance = 50;
+		}
+		
+		// ------- SoftGoals -------
+		
+		softGoal ViableHealthcareService{
+			name = "Viable healthcare service";
+			importance = 50;
+		}
+		
+		softGoal ReduceMaintenanceCost {
+			name = "Reduce Maintenance Cost";
+			importance = 50;
+		}
+	
+		softGoal EfficientOperations {
+			name = "Efficient operations";
+		}
+	
+		softGoal EffectiveTreatments {
+			name = "Effective treatments";
+		}
+		
+		// ------- Tasks -------
+	
+		task PatientCenterCare {
+			name = "Patient-centered care.";
+		}
+	
+		task ProviderCenterCare {
+			name = "Provider-centered care.";
+		}
+		
+		// ------ Decompositions -------
+		
+		TreatPatients decomposedBy PatientCenterCare, ProviderCenterCare;
+		
+		// ------ Contributions -------
+		
+		EfficientOperations contributesTo ViableHealthcareService {25;};
+		EfficientOperations contributesTo ReduceMaintenanceCost {25;};
+		EffectiveTreatments contributesTo ViableHealthcareService {25;};
+		EffectiveTreatments contributesTo ReduceMaintenanceCost {100;};
+		PatientCenterCare contributesTo EfficientOperations {-25;};
+		PatientCenterCare contributesTo EffectiveTreatments {somePositive;};
+		ProviderCenterCare contributesTo EfficientOperations {25;};
+		ProviderCenterCare contributesTo EffectiveTreatments {25;};
+		
+	}
+	
+}
+
+

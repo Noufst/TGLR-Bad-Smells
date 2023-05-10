@@ -1,0 +1,126 @@
+
+grl UniversityAlumni {
+	
+	comment "University Alumni TGRL Model";
+	
+	actor AlumniRelations{
+		
+		name = "Alumni-Relations Department";
+		
+		// ------- SoftGoals -------
+		
+		softGoal FosteringUnivAlumniRel {
+			name = "Fostering the University Alumni relationship";
+			importance = high;
+			decompositionType = and;
+		}
+		
+		softGoal EffevtiveNetworking {
+			name = "Effective Networking";
+		}
+		
+		softGoal EnhancedCollIndustry {
+			name = "Enhanced collaboration with industry";
+		}
+		
+		// ------- Tasks -------
+		
+		task OrganizeNetworkingEvents {
+			name = "Organize networking events";
+		}
+		
+		task UseSocialMedia {
+			name = "Use social media since students use it";
+		} 
+		
+		task SupportIndustryProjects {
+			name = "Support industry related projects";
+		}
+		
+		task ProvideAccessFacilities {
+			name = "Provide access to the university facilities";
+		}
+		
+		// ------ Decompositions -------
+		
+		FosteringUnivAlumniRel decomposedBy EffevtiveNetworking, EnhancedCollIndustry;
+		
+		// ------ Contributions -------
+		
+		OrganizeNetworkingEvents contributesTo EffevtiveNetworking {70;};
+		UseSocialMedia contributesTo EffevtiveNetworking {25;};
+		SupportIndustryProjects contributesTo EnhancedCollIndustry {50;};
+		ProvideAccessFacilities contributesTo EnhancedCollIndustry {50;};
+		
+		// ------ Dependencies ------- 
+		
+		EnhancedCollIndustry dependsOn Alumnus.EstablishResearchCollaboration;
+		UseSocialMedia dependsOn InternetConnection;
+	}
+	
+	actor Alumnus {
+		
+		name = "Alumnus";
+		
+		// ------- Goals -------
+		
+		goal GivebackUniversity {
+			name = "Give back to University";
+			importance = high;
+		}
+		
+		goal HelpingCurrentStudents {
+			name = "Helping current students";
+			decompositionType = or;
+		}
+		
+		// ------- Tasks -------
+		
+		task EstablishResearchCollaboration {
+			name = "Establish research collaboration";
+		}
+		
+		task DonateToUniverity {
+			name = "Donate to the university";
+		}
+		
+		task IdentifyCollaborationAreas {
+			name = "Identify collaboration areas";
+		}
+		
+		task AdvertiseJobOpenings {
+			name = "Advertise job openings!";
+		}
+		
+		task ShareExpWithStudents {
+			name = "Share experience with students";
+		}
+		
+		task MentorCurrentStudents {
+			name = "Mentor current students";
+		}
+		
+		// ------ Decomposition -------
+		
+		HelpingCurrentStudents decomposedBy ShareExpWithStudents, MentorCurrentStudents;
+		
+		// ------ Contributions -------
+		
+		HelpingCurrentStudents contributesTo GivebackUniversity {15;};
+		EstablishResearchCollaboration contributesTo GivebackUniversity {25;};
+		DonateToUniverity contributesTo GivebackUniversity {75;};
+		IdentifyCollaborationAreas contributesTo EstablishResearchCollaboration {25;};
+		AdvertiseJobOpenings contributesTo GivebackUniversity {50;};
+		
+		// ------ Dependencies ------- 
+		
+		HelpingCurrentStudents dependsOn AlumniRelations.ProvideAccessFacilities;
+	}
+	
+	// ------- Resources -------
+		
+	resource InternetConnection {
+		name = "Internet Connection";
+	}
+	
+}
