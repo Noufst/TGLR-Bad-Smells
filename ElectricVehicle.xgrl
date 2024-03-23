@@ -1,0 +1,191 @@
+  grl ELectricVehicle {	
+	actor ElectricCarManufacturer{
+		name = "Electric Car Manufacturer";
+		// ------- SoftGoals -------
+		softGoal EnhanceBrandReputation {
+			name = "Enhance Brand Reputation";
+			importance = high;
+			decompositionType = or;
+		}
+		softGoal ImproveProductQuality {
+			name = "Improve Product Quality";			
+			decompositionType = and;
+		}
+		softGoal MinimizeEnvironmentalImpact {
+			name = "Minimize Environmental Impact";					
+		}
+		softGoal EnhanceVehicleReliability {
+			name = "Enhance Vehicle Reliability";		
+			decompositionType = and;		
+		}
+		softGoal MeetSafetyRegulations {
+			name = "Meet Safety Regulations";		
+			decompositionType = and;		
+		}
+		softGoal EnsureSafetyCompliance {
+			name = "Ensure Safety Compliance";		
+			decompositionType = and;		
+		}					
+
+		// ------- Goals -------
+		goal IncreaseMarketShare {
+			name = "Increase Market Share !";				
+		}					
+		goal ReduceProductionCosts {
+			name = "Reduce Production Costs";				
+		}	
+		goal ExpandProductLine {
+			name = "Expand Product Line";
+			decompositionType = and;				
+		}
+		goal ReduceManufacturingWaste {
+			name = "Reduce Manufacturing Waste";				
+		}
+		goal AchieveCustomerSatisfaction {
+			name = "Achieve Customer Satisfaction";
+			importance = 100;				
+		}	
+				
+		// ------- Tasks -------		
+		task ImplementQualityControlMeasures {
+			name = "Implement Quality Control Measures";
+		}		
+		task ConductMarketResearch {
+			name = "Conduct Market Research";
+		}		
+		task DevelopNewCarModels {
+			name = "Develop New Car Models that push the boundaries of battery technology";
+		}		
+		task DiversifyProductOfferings {
+			name = "Diversify Product Offerings";
+		}
+		task ReduceCarbonEmissions {
+			name = "Reduce Carbon Emissions";
+		}
+ 		task MinimizeMaterialUsage {
+			name = "Minimize Material Usage";
+		}
+ 		task ImplementRecyclingPrograms {
+			name = "Implement Recicling Programs";
+		}
+		task CertifyComplianceStandards {
+			name = "Certify Compliance Standards";
+		} 
+		task PerformSafetyTesting {
+			name = "Perform Safety Testing";
+		}
+		task ImproveComponentDurability {
+			name = "Improve Component Durability";
+		}
+		task EnhanceBatteryPerformance {
+			name = "Enhanced Battery Performance";
+		}
+         		
+		// ------ Decompositions -------		
+		EnhanceBrandReputation decomposedBy ImproveProductQuality, ExpandProductLine;
+		ImproveProductQuality  decomposedBy ImplementQualityControlMeasures, ConductMarketResearch;
+		ExpandProductLine decomposedBy DevelopNewCarModels, DiversifyProductOfferings;
+		EnsureSafetyCompliance decomposedBy MeetSafetyRegulations, EnhanceVehicleReliability;
+		MeetSafetyRegulations decomposedBy CertifyComplianceStandards, PerformSafetyTesting;
+		EnhanceVehicleReliability decomposedBy ImproveComponentDurability, EnhanceBatteryPerformance; 
+		  
+		// ------ Contributions -------		
+		EnhanceBrandReputation contributesTo IncreaseMarketShare {25;};
+		ReduceCarbonEmissions contributesTo MinimizeEnvironmentalImpact {25;};
+		MinimizeEnvironmentalImpact contributesTo ReduceProductionCosts {-25;};
+		ReduceManufacturingWaste contributesTo ReduceProductionCosts {75;};
+		EnsureSafetyCompliance contributesTo ReduceProductionCosts {-25;};
+		MinimizeMaterialUsage contributesTo ReduceManufacturingWaste {-50;};
+		ImplementRecyclingPrograms contributesTo ReduceManufacturingWaste {-50;};
+		EnsureSafetyCompliance contributesTo AchieveCustomerSatisfaction {25;};
+		
+		// ------ Dependencies ------- 		
+		AchieveCustomerSatisfaction dependsOn ManageEVFleet;
+		ManageEVFleet dependsOn ElectricCarOwner.MinimizeOperatingCosts;
+		AchieveCustomerSatisfaction dependsOn ElectricCarOwner.GoodVehicleReliability;
+	}
+	
+	
+	
+	actor ElectricCarOwner {
+		
+		name = "Electric Car Owner";
+		
+		// ------- Softgoals -------		
+		softGoal GoodVehicleReliability {
+			name = "Good Vehicle Reliability";
+			importance = high;
+		}
+		softGoal MinimizeOperatingCosts {
+			name = "Minimize Operating Costs";
+			importance = 75;
+		}
+		softGoal MaximizeVehicleLifespan {
+			name = "Maximize Vehicle Lifespan";		
+			decompositionType = and;	
+		}
+		softGoal ReduceChargingExpenses {
+			name = "Reduce Charging Expenses";
+		}		
+		softGoal MinimizeMaintenanceCosts {
+			name = "Minimize Maintenance Costs";
+		}	
+ 
+		// ------- Goals -------		
+		goal OptimizeChargingSchedule {
+			name = "Optimize Charging Schedule";
+			importance = high;
+		}		
+		goal ExtendBatteryLifespan {
+			name = "Extend Battery Lifespan";
+			decompositionType = or;
+		}
+				
+		// ------- Tasks -------
+		task DriveResponsibly {
+			name = "Drive Responsibly";
+		}
+		task FollowManufacturersMaintenanceSchedule {
+			name = "Follow Manufacturer Maintenance Schedule";
+		}
+		task AvoidExposuretoHighTemperature {
+			name = "Avoid Exposure to High Temperature Environments and Conditions";
+		}
+		task FrequentDeepDischarges {
+			name = "Frequent Deep Discharges";
+		}
+		task UtilizeOffPeakCharging {
+			name = "Utilize Off-Peak Charging";
+		}
+		task ImplementPredictiveMaintenance {
+			name = "Implement Predictive Maintenance";
+		}
+		task ExploringScenicRoutes {
+			name = "Exploring scenic routes or destinations suitable for EV Travel";
+		}		
+		// ------ Decomposition -------
+		MaximizeVehicleLifespan decomposedBy DriveResponsibly, FollowManufacturersMaintenanceSchedule;
+		
+		// ------ Contributions -------
+		MaximizeVehicleLifespan contributesTo GoodVehicleReliability {50;};
+		ExtendBatteryLifespan contributesTo GoodVehicleReliability {50;};
+		AvoidExposuretoHighTemperature contributesTo ExtendBatteryLifespan {25;};
+		FrequentDeepDischarges contributesTo ExtendBatteryLifespan {-25;};
+		DriveResponsibly contributesTo ExtendBatteryLifespan {25;};
+		OptimizeChargingSchedule contributesTo ExtendBatteryLifespan {25;};
+		OptimizeChargingSchedule contributesTo ReduceChargingExpenses {25;};
+		UtilizeOffPeakCharging contributesTo ReduceChargingExpenses {25;};
+		ImplementPredictiveMaintenance contributesTo MinimizeMaintenanceCosts {75;};
+		MinimizeMaintenanceCosts contributesTo MinimizeOperatingCosts {25;};
+		ReduceChargingExpenses contributesTo MinimizeOperatingCosts {25;};
+		ExploringScenicRoutes contributesTo MinimizeMaintenanceCosts {25;};
+		
+		// ------ Dependencies ------- 
+		GoodVehicleReliability dependsOn ElectricCarManufacturer.EnhanceVehicleReliability;
+	}
+	
+	resource ManageEVFleet {
+		name = "Manage EV Fleet";
+		}
+		
+}

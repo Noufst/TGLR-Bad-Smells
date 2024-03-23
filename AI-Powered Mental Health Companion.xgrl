@@ -1,0 +1,247 @@
+
+ grl MHC {
+	
+	actor User{
+		name = "User";
+		// ------- SoftGoals -------
+		softGoal ImprovingEmotionalWellbeing {
+			name = "Improving Emotional Well-being";
+			importance = high;			
+		}
+		softGoal FosterSocialConnections {
+			name = "Foster Social Connections";
+			importance = 75;			
+		}
+		softGoal EnhanceCopingSkills {
+			name = "Enhance Coping Skills";			
+		}
+		softGoal IdentifyTriggers {
+			name = "Identify Triggers";
+			decompositionType = and;
+		}
+		softGoal DevelopCopingStrategies {
+			name = "Develop Coping Strategies";
+			decompositionType = and;
+		}
+		softGoal StrengthenRelationships {
+			name = "Strengthen Relationships";
+		}
+		softGoal ExpandSocialNetwork {
+			name = "Expand Social Network";
+		}
+		softGoal SpendQualityTime {
+			name = "Spend Quality Time";
+			decompositionType = and;
+		}
+		softGoal ShowAppreciation {
+			name = "Show Appreciation";
+			decompositionType = and;
+		}
+		softGoal JoinSocialGroups {
+			name = "Join Social Groups";
+			decompositionType = and;
+		}
+		softGoal VolunteerForCauses {
+			name = "Volunteer for Causes";			
+			decompositionType = and;
+		}
+
+		// ------- Goals -------
+		goal ReduceStress {
+			name = "Reduce Stress";				
+		}					
+		goal PracticeMindfulness {
+			name = "Practice Mindfulness";				
+		}	
+		goal EngageRelaxationTechniques {
+			name = "Engage in Relaxation Techniques";
+			decompositionType = and;				
+		}
+				
+		// ------- Tasks -------	
+		task DeepBreathingExercises {
+			name = "Deep Breathing Exercises";
+		}	
+		task MindfulnessMeditation {
+			name = "Mindfulness Meditation";
+		}		
+		task ProgressiveMuscleRelaxation {
+			name = "Progressive Muscle Relaxation";
+		}
+		task VisualizationTechniques {
+			name = "Visualization Techniques";
+		}
+		task JournalingEmotions {
+			name = "Journaling Emotions";
+		}
+		task SelfReflectionExercises {
+			name = "Self-reflection Exercises";
+		}
+		task CognitiveRestructuring {
+			name = "Cognitive Restructuring";
+		}
+		task ProblemSolvingTechniques {
+			name = "Problem-solving Techniques";
+		}
+		task PlanRegularActivities {
+			name = "Plan Regular Activities";
+		}
+		task HaveMeaningfulConversations {
+			name = "Have meaningful Conversations";
+		}
+		task ExpressGratitude {
+			name = "Express Gratitude";
+		}
+		task OfferSupport {
+			name = "Offer Support";
+		}
+		task AttendCommunityEvents {
+			name = "Attend Community Events";
+		}
+		task JoinOnlineForums {
+			name = "Join Online Forums";
+		}
+		task SupportNonProfitOrganizations {
+			name = "Support Non-Profit Organizations";
+		}
+		task ParticipateInCommunityService {
+			name = "Participate in Community Service";
+		}
+         		
+		// ------ Decompositions -------		
+		PracticeMindfulness decomposedBy DeepBreathingExercises, MindfulnessMeditation;
+		EngageRelaxationTechniques decomposedBy ProgressiveMuscleRelaxation, VisualizationTechniques;
+		IdentifyTriggers decomposedBy JournalingEmotions, SelfReflectionExercises;
+		DevelopCopingStrategies decomposedBy CognitiveRestructuring, ProblemSolvingTechniques;
+		SpendQualityTime decomposedBy PlanRegularActivities, HaveMeaningfulConversations;
+		ShowAppreciation decomposedBy ExpressGratitude, OfferSupport;
+		JoinSocialGroups decomposedBy AttendCommunityEvents, JoinOnlineForums;
+		VolunteerForCauses decomposedBy SupportNonProfitOrganizations, ParticipateInCommunityService;
+
+		// ------ Contributions -------		
+		PracticeMindfulness contributesTo ReduceStress {25;};
+		ReduceStress contributesTo ImprovingEmotionalWellbeing {25;};
+		EngageRelaxationTechniques contributesTo ReduceStress {75;};
+		IdentifyTriggers contributesTo EnhanceCopingSkills {75;};
+		DevelopCopingStrategies contributesTo EnhanceCopingSkills {25;};
+		EnhanceCopingSkills contributesTo ImprovingEmotionalWellbeing {75;};
+		SpendQualityTime contributesTo StrengthenRelationships {25;};
+		ShowAppreciation contributesTo StrengthenRelationships {25;};
+		StrengthenRelationships contributesTo ImprovingEmotionalWellbeing {25;};
+		StrengthenRelationships contributesTo FosterSocialConnections {75;};
+		ExpandSocialNetwork contributesTo FosterSocialConnections {25;};
+		JoinSocialGroups contributesTo ExpandSocialNetwork {50;};
+		VolunteerForCauses contributesTo ExpandSocialNetwork {50;};
+		
+		// ------ Dependencies ------- 		
+		ImprovingEmotionalWellbeing dependsOn AISystem.EnsureUserEngagement;
+		ImprovingEmotionalWellbeing dependsOn AISystem.ProvidePersonalizedSupport;
+	}
+	
+	actor AISystem {
+		
+		name = "AI System";
+		
+		// ------- Softgoals -------			
+		softGoal EnsureDataPrivacySecurity {
+			name = "Ensure Data Privacy and Security";		
+			importance = high;		
+		}				
+		softGoal TailorRecommendations {
+			name = "Tailor Recommendations";					
+		}
+		softGoal AnalyzeUserData {
+			name = "Analyze User Data";		
+			decompositionType = and;		
+		}
+		softGoal UtilizeMachineLearning {
+			name = "Utilize Machine Learning";					
+		}					
+		softGoal OfferAdaptiveGuidance {
+			name = "Offer Adaptive Guidance";		
+			decompositionType = and;		
+		}
+		softGoal AdjustRecommendations {
+			name = "Adjust Recommendations";		
+			decompositionType = and;		
+		}				
+		softGoal IncorporateUserPreferences {
+			name = "Incorporate User Preferences";		
+			decompositionType = and;		
+		}	
+
+		// ------- Goals -------		
+		goal ProvidePersonalizedSupport {
+			name = "Provide Personalized Support";	
+			importance = high;			
+		}
+		goal EnsureUserEngagement {
+			name = "Ensure User Engagement";
+			importance = high;				
+		}	
+						
+		// ------- Tasks -------
+		task GamifyLearningActivities {
+			name = "Gamify Learning Activities";
+		}
+		task ProvideTestimonialsSuccessStories {
+			name = "Provide Testimonials and Success Stories";
+		}	
+		task OfferInteractiveExercises {
+			name = "Offer Interactive Exercises";
+		}				
+		task ConductSecurityAuditsRiskAssessements {
+			name = "Conduct Security Audits and Risk Assessements";
+		}
+		task SecureDataStoragePractices {
+			name = "Secure Data Storage Practices";
+		}		
+		task ImplementEndtoEndEncryption {
+			name = "Implement End-to-End Encryption";
+		}
+		task AnalyzeUserInput {
+			name = "Analyze User Input";
+		}
+		task ReviewPreviousInteractions {
+			name = "Review Previous Interactions";
+		}
+		task ImplementRecommendationsAlgorithms {
+			name = "Implement Recommendations Algorithms";
+		}
+		task UpdateRecommendationsBasedonUserFeedback {
+			name = "Update Recommendations Based on User Feedback";
+		}		
+		task IncorporateUserProgress {
+			name = "Incorporate User Progress";
+		}				
+		task ModifyRecommendationsBasedonUserResponses {
+			name = "Modify Recommendations Based on User Responses";
+		}
+		task CustomizeContentDelivery {
+			name = "Customize Content Delivery";
+		}				
+		task PersonalizeInteractionStyle {
+			name = "Personalize Interaction Style";
+		}
+		
+		// ------ Decomposition -------
+		AnalyzeUserData decomposedBy AnalyzeUserInput, ReviewPreviousInteractions;
+		UtilizeMachineLearning decomposedBy ImplementRecommendationsAlgorithms,UpdateRecommendationsBasedonUserFeedback;
+		AdjustRecommendations decomposedBy IncorporateUserProgress, ModifyRecommendationsBasedonUserResponses;
+		IncorporateUserPreferences decomposedBy CustomizeContentDelivery, PersonalizeInteractionStyle;
+	
+		// ------ Contributions -------
+		GamifyLearningActivities contributesTo EnsureUserEngagement {25;};		
+		ProvideTestimonialsSuccessStories contributesTo EnsureUserEngagement {25;};
+		OfferInteractiveExercises contributesTo EnsureUserEngagement {75;};
+		ConductSecurityAuditsRiskAssessements contributesTo EnsureDataPrivacySecurity {50;};
+		SecureDataStoragePractices contributesTo EnsureDataPrivacySecurity {50;};
+		ImplementEndtoEndEncryption contributesTo EnsureDataPrivacySecurity {50;};
+		AnalyzeUserData contributesTo TailorRecommendations {25;};
+		UtilizeMachineLearning contributesTo TailorRecommendations {25;};
+		TailorRecommendations contributesTo ProvidePersonalizedSupport {25;};
+		OfferAdaptiveGuidance contributesTo ProvidePersonalizedSupport {25;};
+		AdjustRecommendations contributesTo OfferAdaptiveGuidance {25;};
+		IncorporateUserPreferences contributesTo OfferAdaptiveGuidance {25;};
+	}
+}
